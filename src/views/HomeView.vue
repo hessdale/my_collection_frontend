@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <p>simple collection database built by dale</p>
+    <button>enter</button>
+  </div>
 </template>
 
 <script>

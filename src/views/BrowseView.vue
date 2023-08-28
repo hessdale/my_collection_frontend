@@ -1,9 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <get-albums></get-albums>
+  </div>
 </template>
 
 <script>
-export default {};
+import GetAlbums from "@/components/GetAlbums.vue";
+export default {
+  components: {
+    GetAlbums,
+  },
+};
 </script>
 
 <style scoped>
