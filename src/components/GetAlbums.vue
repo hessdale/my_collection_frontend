@@ -8,8 +8,12 @@
 import axios from "axios";
     export default {
         mounted () {
+            
             axios.request({
                 url:`https://api.discogs.com/users/north420/collection/folders/0/releases`,
+                headers:{
+                    'Authorization':`Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
+                }
             }).then((response)=>{
                 console.log(response)
             }).catch((error)=>{
