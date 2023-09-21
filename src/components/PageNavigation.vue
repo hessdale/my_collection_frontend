@@ -1,26 +1,26 @@
 <template>
     <div>
-        <button @click="previous_page">Previous</button>
-        <button @click="next_page">Next</button>
+        <button @click="previous_page(current_page - 1)">Previous</button>
+        <button @click="next_page(current_page + 1)">Next</button>
     </div>
 </template>
 
 <script>
-import router from "@/router";
     export default {
         data() {
             return {
-                previous: this.$route.params[`page_number`] - 1,
-                next: this.$rout.params[`page_number`] + 1
+                current_page: JSON.parse(this.$route.params[`page_number`])
             }
         },
         methods: {
-            previous_page() {
-                router.push({ name: "browse", params: { page:this.previous } })
+            previous_page(destination_page) {
+                let page_number = destination_page
+                this.$router.push({ name: "browse", params: { page_number } })
             },
-            // next_page() {
-
-            // }
+            next_page(destination_page) {
+                let page_number = destination_page
+                this.$router.push({ name: "browse", params: { page_number } })
+            }
         },
     };
 </script>
