@@ -12,7 +12,7 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/browse/:page_number',
+    path: '/browse',
     name: 'browse',
     component: BrowseView
   }
