@@ -11,8 +11,9 @@
         </span> -->
         <div class="albums">
             <article v-for="(album, i) in albums" :key="i" class="album">
-                <img :src="get_imageURL(i)" height="400px">
-                <p>{{ albums[i].basic_information.artists[0].name }} - {{ albums[i].basic_information.title }}</p>
+                <img :src="get_imageURL(i)" height="400px" v-scrollanimation>
+                <p v-scrollanimation>{{ albums[i].basic_information.artists[0].name }} - {{
+                    albums[i].basic_information.title }}</p>
             </article>
         </div>
         <span class="nav">
@@ -108,8 +109,6 @@ export default {
     }
 }
 
-.album {}
-
 .albums {
     display: grid;
     grid-auto-flow: column;
@@ -121,12 +120,25 @@ export default {
 }
 
 .albums>article {
-    margin: 5px;
+    margin: 10px;
 }
 
 
 p {
     color: #73808d;
+}
+
+.before-enter {
+    opacity: .2;
+    transform: translateX(100px);
+    transform: rotateY('30');
+    transition: all 1s ease-out;
+}
+
+.enter {
+    opacity: 1;
+    transform: translateY(0px);
+    transform: rotateY('0');
 }
 
 /* @media only screen and (min-width: 500px) {

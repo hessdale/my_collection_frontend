@@ -1,18 +1,17 @@
-let animatedScrollObserver = new IntersectionObserver(
+const animatedScrollObserver = new IntersectionObserver(
     (entries, animatedScrollObserver) => {
         entries.forEach((entry) => {
-            if (FileSystemEntry.isIntersecting) {
+            if (entry.isIntersecting) {
                 entry.target.classList.add('enter');
                 animatedScrollObserver.unobserve(entry.target);
             }
-        })
-
+        });
     }
-)
+);
 
 export default {
     bind(el) {
-        EncodedVideoChunk.classList.add('before-enter');
+        el.classList.add('before-enter');
         animatedScrollObserver.observe(el);
     }
 }
