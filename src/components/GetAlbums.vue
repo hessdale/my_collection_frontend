@@ -1,14 +1,5 @@
 <template>
     <div>
-        <!-- <span class="nav">
-            <button @click="get_albums(get_pagination(`prev`))">Previous</button>
-            <div class="pages">
-                <p>{{ this.pagination.page - 1 }}</p>
-                <h2>{{ this.pagination.page }}</h2>
-                <p>{{ this.pagination.page + 1 }}</p>
-            </div>
-            <button @click="get_albums(get_pagination(`next`))">Next</button>
-        </span> -->
         <div class="albums">
             <article v-for="(album, i) in albums" :key="i" class="album">
                 <img :src="get_imageURL(i)" height="400px" v-scrollanimation>
@@ -17,21 +8,32 @@
             </article>
         </div>
         <span class="nav">
-            <button @click="get_albums(get_pagination(`prev`))">Previous</button>
+            <!-- <button @click="get_albums(get_pagination(`prev`))">Previous</button> -->
+            <button @click="prev_page()">Previous</button>
             <div class="pages">
                 <p>{{ this.pagination.page - 1 }}</p>
                 <h2>{{ this.pagination.page }}</h2>
                 <p>{{ this.pagination.page + 1 }}</p>
             </div>
-            <button @click="get_albums(get_pagination(`next`))">Next</button>
+            <!-- <button @click="get_albums(get_pagination(`next`))">Next</button> -->
+            <button @click="next_page()">Next</button>
         </span>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
     methods: {
+        prev_page() {
+            this.$router.push({ name: 'browse', params: { number: '1' } })
+            this.$router.go()
+        },
+        next_page() {
+            this.$router.push({ name: 'browse', params: { number: '2' } })
+            this.$router.go()
+        },
         get_pagination(selection) {
             let pagination = this.pagination.urls[selection]
             return pagination
@@ -70,7 +72,7 @@ export default {
     },
     mounted() {
         axios.request({
-            url: "https://api.discogs.com/users/north420/collection/folders/0/releases?page=1&per_page=50",
+            url: "https://api.discogs.com/users/north420/collection/folders/0/releases?page=" + this.$route.params.number + "&per_page=25",
             headers: {
                 'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
             }
@@ -116,7 +118,6 @@ export default {
     white-space: nowrap;
     padding: 20px;
     margin: 30px;
-    -webkit-overflow-scrolling: touch;
 }
 
 .albums>article {
@@ -129,10 +130,10 @@ p {
 }
 
 .before-enter {
-    opacity: .2;
+    opacity: .8;
     transform: translateX(100px);
     transform: rotateY('30');
-    transition: all 1s ease-out;
+    transition: all 2s ease-out;
 }
 
 .enter {
@@ -140,22 +141,4 @@ p {
     transform: translateY(0px);
     transform: rotateY('0');
 }
-
-/* @media only screen and (min-width: 500px) {
-    .album {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media only screen and (min-width: 900px) {
-    .album {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-@media only screen and (min-width: 1250px) {
-    .album {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-} */
 </style>
