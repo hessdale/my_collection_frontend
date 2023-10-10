@@ -8,15 +8,15 @@
             </article>
         </div>
         <span class="nav">
-            <!-- <button @click="get_albums(get_pagination(`prev`))">Previous</button> -->
-            <button @click="prev_page()">Previous</button>
+            <a v-if="this.pagination.page > 1" @click="prev_page()"><img src="../assets/rewind.svg" alt="forward icon"
+                    width="30px"></a>
             <div class="pages">
-                <p>{{ this.pagination.page - 1 }}</p>
+                <p v-if="this.pagination.page > 1">{{ this.pagination.page - 1 }}</p>
                 <h2>{{ this.pagination.page }}</h2>
-                <p>{{ this.pagination.page + 1 }}</p>
+                <p v-if="this.pagination.pages > this.pagination.page">{{ this.pagination.page + 1 }}</p>
             </div>
-            <!-- <button @click="get_albums(get_pagination(`next`))">Next</button> -->
-            <button @click="next_page()">Next</button>
+            <a v-if="this.pagination.pages > this.pagination.page" @click="next_page()"><img src="../assets/forward.svg"
+                    alt="forward icon" width="30px"></a>
         </span>
     </div>
 </template>
@@ -27,11 +27,11 @@ import axios from "axios";
 export default {
     methods: {
         prev_page() {
-            this.$router.push({ name: 'browse', params: { number: '1' } })
+            this.$router.push({ name: 'browse', params: { number: this.pagination.page - 1 } })
             this.$router.go()
         },
         next_page() {
-            this.$router.push({ name: 'browse', params: { number: '2' } })
+            this.$router.push({ name: 'browse', params: { number: this.pagination.page + 1 } })
             this.$router.go()
         },
         get_pagination(selection) {
@@ -82,6 +82,7 @@ export default {
         }).catch((error) => {
             console.log(error)
         });
+
     },
 }
 </script>
@@ -89,7 +90,6 @@ export default {
 <style scoped>
 .nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
 }
