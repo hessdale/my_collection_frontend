@@ -1,10 +1,24 @@
 <template>
     <div>
+        <span class="nav">
+            <a @click="prev_page()"><img src="../assets/rewind.svg" alt="forward icon" width="30px"></a>
+            <div class="pages">
+                <p v-if="this.pagination.page > 1">{{ this.pagination.page - 1 }}</p>
+                <h2>{{ this.pagination.page }}</h2>
+                <p v-if="this.pagination.pages > this.pagination.page">{{ this.pagination.page + 1 }}</p>
+            </div>
+            <a @click="next_page()"><img src="../assets/forward.svg" alt="forward icon" width="30px"></a>
+        </span>
         <div class="albums">
             <article v-for="(album, i) in albums" :key="i" class="album">
-                <img :src="get_imageURL(i)" height="400px" v-scrollanimation>
-                <p v-scrollanimation>{{ albums[i].basic_information.artists[0].name }} - {{
-                    albums[i].basic_information.title }}</p>
+                <img :src="get_imageURL(i)" height="400px">
+                <div>
+                    <h3 v-scrollanimation>{{ albums[i].basic_information.artists[0].name }} - {{
+                        albums[i].basic_information.title }}</h3>
+                    <p v-scrollanimation>This {{ albums[i].basic_information.styles[0] }} {{
+                        albums[i].basic_information.artists[0].name }} album named {{
+        albums[i].basic_information.title }} released in the year {{ albums[0].basic_information.year }}</p>
+                </div>
             </article>
         </div>
         <span class="nav">
@@ -90,8 +104,8 @@ export default {
 <style scoped>
 .nav {
     display: grid;
-    justify-items: center;
     align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .pages {
@@ -111,17 +125,20 @@ export default {
     }
 }
 
-.albums {
+/* .albums {
     display: grid;
     grid-auto-flow: column;
     overflow: auto;
     white-space: nowrap;
     padding: 20px;
     margin: 30px;
-}
+} */
 
 .albums>article {
     margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 
