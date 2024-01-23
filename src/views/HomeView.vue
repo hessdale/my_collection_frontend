@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <router-link to="/browse/page/1"><img src="../assets/record_player_logo.jpg" alt="record player black logo simple"
-        width="400px"></router-link>
+    <router-link to="/browse/page/1"><img src="../assets/bookshelf_icon.png" alt="shelf with music collection on it"
+        width="600px"></router-link>
 
   </div>
 </template>

@@ -11,13 +11,16 @@
         </span>
         <div class="albums">
             <article v-for="(album, i) in albums" :key="i" class="album">
-                <img :src="get_imageURL(i)" height="400px">
+                <router-link to="{name:'album',params:{id:7356009}}"><img :src="get_imageURL(i)"
+                        width="250px"></router-link>
+
                 <div>
-                    <h3 v-scrollanimation>{{ albums[i].basic_information.artists[0].name }} - {{
+                    <h3>{{ albums[i].basic_information.artists[0].name }} - {{
                         albums[i].basic_information.title }}</h3>
-                    <p v-scrollanimation>This {{ albums[i].basic_information.styles[0] }} {{
-                        albums[i].basic_information.artists[0].name }} album named {{
-        albums[i].basic_information.title }} released in the year {{ albums[0].basic_information.year }}</p>
+                    <p>This {{ albums[i].basic_information.styles[0] }} {{
+                        albums[i].basic_information.artists[0].name }} album called {{
+        albums[i].basic_information.title }} released in the year {{ albums[0].basic_information.year }}.
+                    </p>
                 </div>
             </article>
         </div>
@@ -37,52 +40,53 @@
 
 <script>
 import axios from "axios";
+import { RouterLink } from "vue-router";
 
 export default {
     methods: {
         prev_page() {
-            this.$router.push({ name: 'browse', params: { number: this.pagination.page - 1 } })
-            this.$router.go()
+            this.$router.push({ name: 'browse', params: { number: this.pagination.page - 1 } });
+            this.$router.go();
         },
         next_page() {
-            this.$router.push({ name: 'browse', params: { number: this.pagination.page + 1 } })
-            this.$router.go()
+            this.$router.push({ name: 'browse', params: { number: this.pagination.page + 1 } });
+            this.$router.go();
         },
         get_pagination(selection) {
-            let pagination = this.pagination.urls[selection]
-            return pagination
+            let pagination = this.pagination.urls[selection];
+            return pagination;
         },
         get_imageURL(i) {
-            let image_URL = this.albums[i].basic_information.cover_image
-            return image_URL
+            let image_URL = this.albums[i].basic_information.cover_image;
+            return image_URL;
         },
         get_albums(url_input) {
             if (this.pagination.page == 1 && url_input == null) {
-                console.log("cannot go further")
-            } else if (this.pagination.page == this.pagination.pages && url_input == null) {
-                console.log("cannot go further")
-            } else {
+                console.log("cannot go further");
+            }
+            else if (this.pagination.page == this.pagination.pages && url_input == null) {
+                console.log("cannot go further");
+            }
+            else {
                 axios.request({
                     url: url_input,
                     headers: {
                         'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
                     }
                 }).then((response) => {
-                    this.albums = response.data.releases
-                    this.pagination = response.data.pagination
+                    this.albums = response.data.releases;
+                    this.pagination = response.data.pagination;
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error);
                 });
             }
-
         }
-
     },
     data() {
         return {
             albums: undefined,
             pagination: undefined
-        }
+        };
     },
     mounted() {
         axios.request({
@@ -91,13 +95,13 @@ export default {
                 'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
             }
         }).then((response) => {
-            this.albums = response.data.releases
-            this.pagination = response.data.pagination
+            this.albums = response.data.releases;
+            this.pagination = response.data.pagination;
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
         });
-
     },
+    components: { RouterLink }
 }
 </script>
 
@@ -115,30 +119,20 @@ export default {
     align-items: center;
 }
 
-@keyframes carousel {
-    0% {
-        transform: scale(0.5, 0.25)
-    }
 
-    50% {
-        transform: scale(1, 0.25);
-    }
-}
-
-/* .albums {
+.albums {
     display: grid;
-    grid-auto-flow: column;
-    overflow: auto;
-    white-space: nowrap;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     padding: 20px;
     margin: 30px;
-} */
+}
 
 .albums>article {
     margin: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     align-items: center;
+    justify-items: center;
+
 }
 
 
