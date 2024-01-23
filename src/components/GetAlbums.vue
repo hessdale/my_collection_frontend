@@ -11,17 +11,8 @@
         </span>
         <div class="albums">
             <article v-for="(album, i) in albums" :key="i" class="album">
-                <router-link to="{name:'album',params:{id:7356009}}"><img :src="get_imageURL(i)"
+                <router-link :to="{ name: 'album', params: { id: get_album_id(i) } }"><img :src="get_imageURL(i)"
                         width="250px"></router-link>
-
-                <div>
-                    <h3>{{ albums[i].basic_information.artists[0].name }} - {{
-                        albums[i].basic_information.title }}</h3>
-                    <p>This {{ albums[i].basic_information.styles[0] }} {{
-                        albums[i].basic_information.artists[0].name }} album called {{
-        albums[i].basic_information.title }} released in the year {{ albums[0].basic_information.year }}.
-                    </p>
-                </div>
             </article>
         </div>
         <span class="nav">
@@ -44,6 +35,10 @@ import { RouterLink } from "vue-router";
 
 export default {
     methods: {
+        get_album_id(i) {
+            let album_id = this.albums[i].id
+            return album_id
+        },
         prev_page() {
             this.$router.push({ name: 'browse', params: { number: this.pagination.page - 1 } });
             this.$router.go();
@@ -95,6 +90,7 @@ export default {
                 'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
             }
         }).then((response) => {
+            console.log(response)
             this.albums = response.data.releases;
             this.pagination = response.data.pagination;
         }).catch((error) => {
