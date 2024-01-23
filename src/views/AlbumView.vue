@@ -6,9 +6,7 @@
             <p>{{ album_info.notes }}</p>
         </div>
         <div v-for="(video, i) in album_info.videos" :key="i">
-            <iframe width="560" height="315" :src="video.uri" title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
+            <a :href="video.uri">{{ video.title }}</a>
         </div>
     </div>
 </template>
