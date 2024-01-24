@@ -1,7 +1,7 @@
 <template>
     <div>
-        <router-link to="/">Home</router-link>
-        <router-link to="/browse/page/1">Browse</router-link>
+        <router-link to="/" class="nav_link">Home</router-link>
+        <router-link to="/browse/page/1" class="nav_link">Browse</router-link>
     </div>
 </template>
 
@@ -12,4 +12,19 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url(https://fonts.googleapis.com/css?family=Baskervville:regular,italic);
+
+div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: 'Baskervville', sans-serif;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.nav_link {
+    text-decoration: none;
+    color: #2c3e50;
+}
+</style>
