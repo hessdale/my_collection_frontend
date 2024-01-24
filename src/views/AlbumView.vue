@@ -1,14 +1,16 @@
 <template>
     <div>
+        <nav-bar></nav-bar>
         <get-album></get-album>
     </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 import GetAlbum from '@/components/GetAlbum.vue';
 export default {
     components: {
-        GetAlbum,
+        GetAlbum, NavBar
     },
 }
 </script>

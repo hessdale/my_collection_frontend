@@ -1,16 +1,18 @@
 <template>
   <div>
-
-    <router-link to="/browse/page/1"><img src="../assets/bookshelf_icon.png" alt="shelf with music collection on it"
-        width="600px"></router-link>
-
+    <nav-bar></nav-bar>
+    <p>I created this website using the Discogs API, allowing it to seamlessly fetch and present my music collection. You
+      can easily explore each album by clicking on it, gaining access to detailed information about the release and even
+      enjoying YouTube videos featuring songs from that specific album.</p>
   </div>
 </template>
 
 <script>
-
+import NavBar from '@/components/NavBar.vue';
 export default {
-
+  components: {
+    NavBar,
+  },
 };
 </script>
 

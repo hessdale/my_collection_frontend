@@ -16,8 +16,7 @@
             </article>
         </div>
         <span class="nav">
-            <a v-if="this.pagination.page > 1" @click="prev_page()"><img src="../assets/rewind.svg" alt="forward icon"
-                    width="30px"></a>
+            <a @click="prev_page()"><img src="../assets/rewind.svg" alt="forward icon" width="30px"></a>
             <div class="pages">
                 <p v-if="this.pagination.page > 1">{{ this.pagination.page - 1 }}</p>
                 <h2>{{ this.pagination.page }}</h2>
@@ -134,18 +133,5 @@ export default {
 
 p {
     color: #73808d;
-}
-
-.before-enter {
-    opacity: .8;
-    transform: translateX(100px);
-    transform: rotateY('30');
-    transition: all 2s ease-out;
-}
-
-.enter {
-    opacity: 1;
-    transform: translateY(0px);
-    transform: rotateY('0');
 }
 </style>
