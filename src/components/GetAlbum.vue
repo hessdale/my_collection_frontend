@@ -26,7 +26,6 @@ export default {
                 'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
             }
         }).then((response) => {
-            console.log(response)
             this.album_info = response.data;
         }).catch((error) => {
             console.log(error);

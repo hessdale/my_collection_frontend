@@ -89,7 +89,6 @@ export default {
                 'Authorization': `Discogs token=lnUqECsqzdHkSZAGdDCBjdeQTPgbKxkhMwMMWbDr`,
             }
         }).then((response) => {
-            console.log(response)
             this.albums = response.data.releases;
             this.pagination = response.data.pagination;
         }).catch((error) => {
