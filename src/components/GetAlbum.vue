@@ -6,7 +6,7 @@
             <p>{{ album_info.notes }}</p>
         </div>
         <div v-for="(video, i) in album_info.videos" :key="i">
-            <a :href="video.uri">{{ video.title }}</a>
+            <a :href="video.uri" target="_blank">{{ video.title }}</a>
         </div>
     </div>
 </template>

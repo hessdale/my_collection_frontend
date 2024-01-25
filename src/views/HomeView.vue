@@ -5,7 +5,7 @@
       <p>I created this website using the Discogs API, allowing it to seamlessly fetch and present my music collection.
         You
         can easily explore each album by clicking on it, gaining access to detailed information about the release and even
-        enjoying YouTube videos featuring songs from that specific album.</p>
+        enjoying YouTube videos of songs from that specific album.</p>
     </article>
   </div>
 </template>
