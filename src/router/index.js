@@ -13,8 +13,7 @@ const routes = [
     component: HomeView,
     meta: [
       {
-        name: 'title',
-        content: 'Home Page'
+        title: 'Home Page'
       },
       {
         name: 'description',
@@ -32,8 +31,7 @@ const routes = [
     component: BrowseView,
     meta: [
       {
-        name: 'title',
-        content: 'Browse Page'
+        title: 'Browse Page'
       },
       {
         name: 'description',
@@ -51,8 +49,7 @@ const routes = [
     component: AlbumView,
     meta: [
       {
-        name: 'title',
-        content: 'Album Page'
+        title: 'Album Page'
       },
       {
         name: 'description',
